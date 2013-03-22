@@ -1,0 +1,10 @@
+{
+  "name": "grunt-sandbox",
+  "version": "0.0.1",
+  "private": true,
+  "author": "tmaeda1981jp",
+  "dependencies": {
+    "grunt-exec": "~0.4.0",
+    "grunt-contrib-watch": "~0.3.1"
+  }
+}
