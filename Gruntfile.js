@@ -73,18 +73,10 @@ module.exports = function(grunt) {
       }
     },
 
-    // grunt-img
-    img: {
-      task: {
-        src: 'imgs/src',
-        dest: 'imgs'
-      }
-    },
-
-    // watch
-    watch: {
-      js: {
-        files: [
+    // docco
+    docco: {
+      dist: {
+        src: [
           'js/*.js',
           'js/collections/**/*.js',
           'js/utils/**/*.js',
@@ -95,7 +87,33 @@ module.exports = function(grunt) {
           'js/test/specs/**/*.js',
           'js/test/main.js'
         ],
+        options: {
+          output: 'js/docs/'
+        }
+      }
+    },
+
+    // optimize images
+    img: {
+      task: {
+        src: 'imgs/src',
+        dest: 'imgs'
+      }
+    },
+
+    // watch
+    watch: {
+      js: {
+        files: ['<%= docco.dist.src %>'],
+        tasks: ['docco', 'exec:testjs']
+      },
+      jstest: {
+        files: ['<%= docco.dist.src %>'],
         tasks: ['exec:testjs']
+      },
+      jsdoc: {
+        files: ['<%= docco.dist.src %>'],
+        tasks: ['docco']
       },
       css: {
         files: ['_sass/*.scss'],
@@ -110,6 +128,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-exec');
   grunt.loadNpmTasks('grunt-img');
+  grunt.loadNpmTasks('grunt-docco');
 
   // tasks for optimize(minify)
   grunt.registerTask('minify', ['requirejs', 'compass-clean', 'compass:prod']);
