@@ -73,6 +73,14 @@ module.exports = function(grunt) {
       }
     },
 
+    // grunt-img
+    img: {
+      task: {
+        src: 'imgs/src',
+        dest: 'imgs'
+      }
+    },
+
     // watch
     watch: {
       js: {
@@ -101,6 +109,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-compass');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-exec');
+  grunt.loadNpmTasks('grunt-img');
 
   // tasks for optimize(minify)
   grunt.registerTask('minify', ['requirejs', 'compass-clean', 'compass:prod']);
