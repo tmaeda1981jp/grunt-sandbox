@@ -3,6 +3,7 @@
 
 module.exports = function(grunt) {
   'use strict';
+
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
@@ -19,16 +20,19 @@ module.exports = function(grunt) {
         options: {
           almond: true,
           baseUrl: 'js/',
-          name: 'libs/require/almond', // path to almond.js
+          name: 'libs/almond/almond', // path to almond.js
           include: ['main'],
           insertRequire: ['main'],
           preserveLicenseComments: true,
+          // install using bower
           paths: {
-            text: 'libs/requirejs/text',
+            text: 'libs/text/text',
             jquery: 'libs/jquery/jquery',
+            // underscore: 'libs/underscore-amd/underscore',
             underscore: 'libs/underscore/underscore',
+            // backbone: 'libs/backbone-amd/backbone',
             backbone: 'libs/backbone/backbone',
-            'backbone.viewmodel': 'libs/backbone/backbone.viewmodel', // https://github.com/tommyh/backbone-view-model
+            'backbone.viewmodel': 'libs/backbone-view-model/src/view-model',
             mustache: 'libs/mustache/mustache'
           },
           shim: {
