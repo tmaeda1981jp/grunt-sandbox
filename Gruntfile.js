@@ -18,6 +18,7 @@ module.exports = function(grunt) {
     requirejs: {
       compile: {
         options: {
+          out: 'js/main-build.js',
           almond: true,
           baseUrl: 'js/',
           name: 'libs/almond/almond', // path to almond.js
