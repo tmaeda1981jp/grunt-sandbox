@@ -13,25 +13,93 @@ module.exports = function(grunt) {
       }
     },
 
+    // requirejs
+    requirejs: {
+      compile: {
+        options: {
+          almond: true,
+          baseUrl: 'js/',
+          name: 'libs/require/almond', // path to almond.js
+          include: ['main'],
+          insertRequire: ['main'],
+          preserveLicenseComments: true,
+          paths: {
+            text: 'libs/requirejs/text',
+            jquery: 'libs/jquery/jquery',
+            underscore: 'libs/underscore/underscore',
+            backbone: 'libs/backbone/backbone',
+            'backbone.viewmodel': 'libs/backbone/backbone.viewmodel', // https://github.com/tommyh/backbone-view-model
+            mustache: 'libs/mustache/mustache'
+          },
+          shim: {
+            underscore: {
+              exports: '_'
+            },
+            backbone: {
+              deps: ['jquery', 'underscore'],
+              exports: 'Backbone'
+            },
+            'backbone.viewmodel': {
+              deps: ['backbone']
+            }
+          }
+        }
+      }
+    },
+
+    // compass
+    compass: {
+      dev: {
+        src: '_sass/',
+        dest: 'css/',
+        linecomments: true,
+        forcecompile: true,
+        debugsass: false,
+        relativeassets: true
+      },
+      prod: {
+        src: '_sass/',
+        dest: 'css/',
+        linecomments: false,
+        outputstyle: 'compressed',
+        forcecompile: false,
+        debugsass: false,
+        relativeassets: false
+      }
+    },
+
     // watch
     watch: {
       js: {
         files: [
-          'main.js',
-          './collections/**/*.js',
-          './utils/**/*.js',
-          './views/**/*.js',
-          './models/**/*.js',
-          './exceptions/**/*.js',
-          './viewmodels/**/*.js',
-          './test/specs/**/*.js',
-          './test/main.js'
+          'js/*.js',
+          'js/collections/**/*.js',
+          'js/utils/**/*.js',
+          'js/views/**/*.js',
+          'js/models/**/*.js',
+          'js/exceptions/**/*.js',
+          'js/viewmodels/**/*.js',
+          'js/test/specs/**/*.js',
+          'js/test/main.js'
         ],
         tasks: ['exec:testjs']
+      },
+      css: {
+        files: ['_sass/*.scss'],
+        tasks: ['compass:dev']
       }
     }
   });
 
+  // grunt.loadNpmTasks('grunt-contrib');
+  grunt.loadNpmTasks('grunt-contrib-requirejs');
+  grunt.loadNpmTasks('grunt-compass');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-exec');
+
+  // tasks for optimize(minify)
+  grunt.registerTask('minify', ['requirejs', 'compass-clean', 'compass:prod']);
+  grunt.registerTask('minify:js',  ['requirejs']);
+  grunt.registerTask('minify:css', ['compass-clean', 'compass:prod']);
+
 };
