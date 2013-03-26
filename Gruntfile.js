@@ -10,7 +10,7 @@ module.exports = function(grunt) {
     // exec
     exec: {
       testjs: {
-        command: 'mocha-phantomjs test/spec_runner.html'
+        command: 'mocha-phantomjs js/test/spec_runner.html'
       }
     },
 
@@ -134,5 +134,4 @@ module.exports = function(grunt) {
   grunt.registerTask('minify', ['requirejs', 'compass-clean', 'compass:prod']);
   grunt.registerTask('minify:js',  ['requirejs']);
   grunt.registerTask('minify:css', ['compass-clean', 'compass:prod']);
-
 };
