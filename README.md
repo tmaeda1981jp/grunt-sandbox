@@ -7,12 +7,6 @@
 - Create documents using docco.
 - Create html from jade.
 
-## Install
-
-```shell
-npm install
-```
-
 ## Dependencies
 - phantomjs
 - optipng
