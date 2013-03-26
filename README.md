@@ -1,11 +1,11 @@
 # My grunt template.
 
-- Optimize requirejs project.
-- Compile compass files to css files.
-- Run unittests for js files using mocha-phantomjs.
+- Optimize [requirejs][requirejs] project.
+- Compile [compass][compass] files to css files.
+- Run unittests for js files using [mocha-phantomjs][mocha-phantomjs].
 - Optimize images.
-- Watch js files and run tests when they were edited.
-- Watch compass files and compile to css when they were edited.
+- Create documents using [docco][docco].
+- Create html from [jade][jade].
 
 ## Dependencies
 - [phantomjs][phantomjs]
@@ -16,7 +16,7 @@
 brew install optipng jpeg phantomjs
 ```
 
-- phantomjs-mocha
+- [phantomjs-mocha][phantomjs-mocha]
 ```shell
 npm install phantomjs-mocha -g
 ```
