@@ -1,4 +1,4 @@
-# My grunt template.
+# My grunt template
 
 - Optimize requirejs project.
 - Compile compass files to css files.
@@ -6,6 +6,12 @@
 - Optimize images.
 - Create documents using docco.
 - Create html from jade.
+
+## Install
+
+```shell
+npm install
+```
 
 ## Dependencies
 - phantomjs
