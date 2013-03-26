@@ -101,6 +101,18 @@ module.exports = function(grunt) {
       }
     },
 
+    // jade
+    jade: {
+      compile: {
+        options: {
+          pretty: true
+        },
+        files: {
+          'html/dest.html': 'jade/**/*.jade' //, 'a.html': ['path/to/a1.jade', 'path/to/a2.jade']
+        }
+      }
+    },
+    
     // watch
     watch: {
       js: {
@@ -118,6 +130,10 @@ module.exports = function(grunt) {
       css: {
         files: ['_sass/*.scss'],
         tasks: ['compass:dev']
+      },
+      jade: {
+        files: ['jade/**/*.jade'],
+        tasks: ['jade']
       }
     }
   });
@@ -129,6 +145,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-exec');
   grunt.loadNpmTasks('grunt-img');
   grunt.loadNpmTasks('grunt-docco');
+  grunt.loadNpmTasks('grunt-contrib-jade');
 
   // tasks for optimize(minify)
   grunt.registerTask('minify', ['requirejs', 'compass-clean', 'compass:prod']);

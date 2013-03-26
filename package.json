@@ -10,6 +10,7 @@
     "grunt-contrib-requirejs": "~0.4.0",
     "grunt-compass": "~0.3.9",
     "grunt-img": "~0.1.6",
-    "grunt-docco": "~0.2.0"
+    "grunt-docco": "~0.2.0",
+    "grunt-contrib-jade": "~0.5.0"
   }
 }
