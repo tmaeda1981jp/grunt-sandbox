@@ -16,9 +16,10 @@
 brew install optipng jpeg phantomjs
 ```
 
-- phantomjs-mocha
+- mocha-phantomjs
+- jade
 
 ```shell
-npm install phantomjs-mocha -g
+npm install jade mocha-phantomjs -g
 ```
 
