@@ -7,6 +7,18 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
+    jsFiles: [
+      'js/*.js',
+      'js/collections/**/*.js',
+      'js/utils/**/*.js',
+      'js/views/**/*.js',
+      'js/models/**/*.js',
+      'js/exceptions/**/*.js',
+      'js/viewmodels/**/*.js',
+      'js/test/specs/**/*.js',
+      'js/test/main.js'
+    ],
+
     // exec
     exec: {
       testjs: {
@@ -55,38 +67,32 @@ module.exports = function(grunt) {
     // compass
     compass: {
       dev: {
-        src: '_sass/',
-        dest: 'css/',
-        linecomments: true,
-        forcecompile: true,
-        debugsass: false,
-        relativeassets: true
+        options: {
+          sassDir: '_sass/',
+          cssDir: 'css/',
+          environment: 'develepment',
+          noLineComments: false,
+          force: true,
+          relativeAssets: true
+        }
       },
       prod: {
-        src: '_sass/',
-        dest: 'css/',
-        linecomments: false,
-        outputstyle: 'compressed',
-        forcecompile: false,
-        debugsass: false,
-        relativeassets: false
+        options: {
+          sassDir: '_sass/',
+          cssDir: 'css/',
+          environment: 'production',
+          noLineComments: true,
+          outputstyle: 'compressed',
+          force: false,
+          relativeAssets: false
+        }
       }
     },
 
     // docco
     docco: {
       dist: {
-        src: [
-          'js/*.js',
-          'js/collections/**/*.js',
-          'js/utils/**/*.js',
-          'js/views/**/*.js',
-          'js/models/**/*.js',
-          'js/exceptions/**/*.js',
-          'js/viewmodels/**/*.js',
-          'js/test/specs/**/*.js',
-          'js/test/main.js'
-        ],
+        src: '<%= jsFiles %>',
         options: {
           output: 'js/docs/'
         }
@@ -112,19 +118,19 @@ module.exports = function(grunt) {
         }
       }
     },
-    
+
     // watch
     watch: {
       js: {
-        files: ['<%= docco.dist.src %>'],
+        files: '<%= jsFiles %>',
         tasks: ['docco', 'exec:testjs']
       },
       jstest: {
-        files: ['<%= docco.dist.src %>'],
+        files: '<%= jsFiles %>',
         tasks: ['exec:testjs']
       },
       jsdoc: {
-        files: ['<%= docco.dist.src %>'],
+        files: '<%= jsFiles %>',
         tasks: ['docco']
       },
       css: {
@@ -138,9 +144,8 @@ module.exports = function(grunt) {
     }
   });
 
-  // grunt.loadNpmTasks('grunt-contrib');
   grunt.loadNpmTasks('grunt-contrib-requirejs');
-  grunt.loadNpmTasks('grunt-compass');
+  grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-exec');
   grunt.loadNpmTasks('grunt-img');
